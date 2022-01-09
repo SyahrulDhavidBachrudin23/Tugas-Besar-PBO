@@ -1,0 +1,141 @@
+nama= []
+gaji=[]         ####PROGRAM ACC######
+emas=[]
+uemas=[]
+perak=[]
+uperak=[]
+zakat=[]
+pertahun=[]
+perbulan=[]
+nisab=[]
+nisab1=[]
+nisab2=[]
+perbulanEmas=[]
+perbulanPerak=[]
+tunaikan=[]
+nanti=[]
+jawaban=[]
+pilihan=[]
+
+print ('+-----------------------------------------------+')
+print ('|             Menghitung Zakat Mal              |')
+print ('|             Profesi dan Perhiasan             |')
+print ('|                                               |')
+print ('+-----------------------------------------------+')
+data=int(input('Masukan banyak data : '))
+print('==================================================')
+
+i=1
+for i in range(data):
+    namaku = input('Masukan nama : ')
+    nama.append(namaku)
+    unitEmas = int(input('Masukan berat emas anda (gram)     : '))
+    uemas.append(unitEmas)
+    emasku = int(input('Masukan harga emas saat ini(/gram) : '))
+    emas.append(emasku)
+    unitPerak = int(input('Masukan berat perak anda (gram)    : '))
+    uperak.append(unitPerak)
+    perakku = int(input('Masukan harga perak saat ini(/gram): '))
+    perak.append(perakku)
+    gajiku = int(input('Berapa penghasilan/bulan : '))
+    gaji.append(gajiku)
+    print('')
+
+while i in range (data):
+    i+=1
+
+for i in range(data):
+    gajiPertahun = 12 * gaji[i]
+    pertahun.append(gajiPertahun)
+    nisabGaji = 4420000
+    nisabEmas = 85
+    nisabPerak = 595
+    nisab.append(nisabGaji)
+    zakatPertahun = 0.025 * pertahun[i]
+    zakat.append(zakatPertahun)
+    zakatEmas = unitEmas * emas[i] * 0.025
+    nisab1.append(zakatEmas)
+    zakatPerak = unitPerak * perak[i] * 0.025
+    nisab2.append(zakatPerak)
+    zakatPerbulan = zakat[i] / 12
+    perbulan.append(zakatPerbulan)
+    nisabZakatEmas = nisab1[i] /12
+    perbulanEmas.append(nisabZakatEmas)
+    nisabZakatPerak = nisab2[i] /12
+    perbulanPerak.append(nisabZakatPerak)
+
+while i in range (data):
+    i+=1
+
+
+for i in range(data):
+    print ('')
+    print('----------------------------------------')
+    print('          Rincian Zakat Anda            ')
+    print('----------------------------------------')
+    print('Nama                         :',nama[i])
+    print('Harga 1 gram emas            :','Rp.',emas[i])
+    print('Harga 1 gram perak           :','Rp.',perak[i])
+    print('Penghasilan per bulan        :','Rp.',gaji[i])
+    print('Penghasilan per tahun        :','Rp.',pertahun[i])
+    print('Zakat penghasilan            :','2.5% x',pertahun[i],'=','Rp.',zakat[i])
+    if pertahun[i] >= nisab[i]:
+        print('Keterangan                   : WAJIB Zakat Rp.',zakat[i],'/tahun')
+        print('                               atau Rp. ',perbulan[i],'/bulan')
+        print('')
+    if pertahun[i] <= nisab[i]:
+        print('Keterangan                   : Anda BELUM WAJIB Zakat')
+
+    print('Jumlah Zakat Perhiasan Emas  :','Rp.',nisab1[i])
+    if   unitEmas >= nisabEmas:
+         print("Keterangan                   : WAJIB ZAKAT Rp.", nisab1[i],"/tahun")
+         print("                               atau Rp. ",perbulanEmas[i],"/bulan")
+         print("")
+    else :
+         print("Keterangan                   : Nilai belum mencukupi nisab")
+         print("                               Anda BELUM WAJIB Zakat Perhiasan Emas")
+
+    print('Jumlah Zakat Perhiasan Perak :','Rp.',nisab2[i])
+    if   unitPerak >= nisabPerak:
+         print("Keterangan                   : WAJIB ZAKAT Rp.", nisab2[i],"/tahun")
+         print("                               atau Rp. ",perbulanPerak[i],"/bulan")
+         print("")
+    else :
+         print("Keterangan                   : Nilai belum mencukupi nisab")
+         print("                               Anda BELUM WAJIB Zakat Perhiasan Perak")
+
+def pilihan():
+    global tunaikan
+    global nanti
+    global bayar
+    tunaikan = (float(zakat[i] +nisab1[i] +nisab2[i]))
+
+    print("")
+    jawaban = input("Apakah anda ingin menunaikan zakat sekarang? (y/n) :")
+    print("")
+    print("")
+    if jawaban == 'y':
+        print("Zakat yang harus anda bayar adalah Rp:", tunaikan)
+        bayar = float(input('CASH\t\t: '))
+        kembali = bayar - tunaikan
+        print("JUMLAH ZAKAT \t: %d" %tunaikan)
+        print("TUNAI \t\t: %d" %bayar)
+        print("KEMBALI \t: %d" %kembali)
+    elif jawaban == 'n':
+        print("Zakat yang harus anda bayar adalah Rp:",(zakat[i]+
+                                                        nisab1[i]+
+                                                        nisab2[i]))
+        print("Jangan lupa dan sesegerakanlah menunaikan zakat")
+    else :
+        print("TIDAK MERESPON")
+
+    print("")
+    print("")
+    print("========================TERIMA KASIH==========================")
+    print("Zakat adalah Rukun Islam dan hukumnya WAJIB bagi setiap Muslim")
+
+    print("\t\t\t SYAHRUL DAVID BACHRUDIN \t\t\t")
+    print("\t\t\t  32602000061 \t\t\t")
+
+
+pilihan ()
